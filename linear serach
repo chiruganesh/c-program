@@ -1,0 +1,21 @@
+#include<stdio.h>
+int main(){
+    int arr[]={10,20,30,40,50};
+    int size=sizeof(arr)/sizeof(arr[0]);
+    int target ,i,found=0;
+    printf("enter the size of array");
+    scanf("%d",&target);
+    for(i=0;i<size;i++){
+        if(arr[i]==target){
+            found=1;
+            break;
+        }
+    }
+    if(found){
+        printf("element %d found at index %d \n",target,i);
+    }
+    else{
+        printf("element %d not found at indx %d \n",target,i);
+    }
+    return 0;
+}
