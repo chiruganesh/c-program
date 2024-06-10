@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+    int data;
+    struct Node* next;
+};
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+void insertMiddle(struct Node** head, int data, int position) {
+    struct Node* newNode = createNode(data);
+
+    if (*head == NULL || position == 0) {
+        newNode->next = *head;
+        *head = newNode;
+        return;
+    }
+    struct Node* current = *head;
+    struct Node* previous = NULL;
+    int i = 0;
+    while (current != NULL && i < position) {
+        previous = current;
+        current = current->next;
+        i++;
+    }
+    newNode->next = current;
+    previous->next = newNode;
+}
+void printList(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+int main() {
+    struct Node* head = NULL;
+    head = createNode(1);
+    head->next = createNode(2);
+    head->next->next = createNode(4);
+    printf("Original list: ");
+    printList(head);
+    insertMiddle(&head, 3, 2);
+    printf("List after insertion: ");
+    printList(head);
+    return 0;
+}
