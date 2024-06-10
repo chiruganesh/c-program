@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+
+void deleteAtBeginning(char* str, int n) {
+    int len = strlen(str);
+
+    if (n > len) {
+        str[0] = '\0';
+    } else {
+        for (int i = 0; i < len - n; i++) {
+            str[i] = str[i + n];
+        }
+        str[len - n] = '\0';
+    }
+}
+
+int main() {
+    char str[100] = "Hello, World!";
+    int n = 7;
+
+    printf("Original string: %s\n", str);
+    deleteAtBeginning(str, n);
+    printf("Modified string: %s\n", str);
+
+    return 0;
+}
+ 
